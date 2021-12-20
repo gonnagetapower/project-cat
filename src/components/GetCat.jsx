@@ -24,7 +24,7 @@ class GetCat extends React.Component {
         this.state = {
             cats: [],
             value: this.props,
-            timeoutHolder: {}
+     
         }
     }
     axiosFunc = () => {
@@ -32,7 +32,7 @@ class GetCat extends React.Component {
             .then(res => {
                 const cats = res.data;
                 this.setState({ cats })
-                if (this.props.value) { this.timeoutHolder = setTimeout(this.axiosFunc, 5000) };
+                if (this.props.value) { setTimeout(this.axiosFunc, 5000) };
             })
     }
 
@@ -44,12 +44,7 @@ class GetCat extends React.Component {
             this.axiosFunc();
         }
     }
-    componentWillUnmount(prevProps) {
-        if (prevProps.value === this.props.value) {
-           clearTimeout(this.timeoutHolder)
-           this.timeoutHolder = 0
-        }
-    }
+
     render() {
         return (
             <div>
